@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "628558559485",
+    "project_id": "spot-on-5fce9",
+    "storage_bucket": "spot-on-5fce9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:628558559485:android:38526b631b9ed049bf2694",
+        "android_client_info": {
+          "package_name": "com.example.spoton_v3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "628558559485-08jehk9adaadk2ltektq2960sti11bl4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4mdPOED7T2IaiLpSjxrAHbFGSzRtmsJQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "628558559485-08jehk9adaadk2ltektq2960sti11bl4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
