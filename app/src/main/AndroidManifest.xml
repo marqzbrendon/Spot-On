@@ -21,7 +21,8 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.SpotOn_v3">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

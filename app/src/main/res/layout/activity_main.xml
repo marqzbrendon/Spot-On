@@ -6,14 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!--    <TextView-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:text="Hello World!"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent" />-->
+    <ImageView
+        android:id="@+id/im1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/background_image2"
+        android:scaleType="fitXY"
+        android:src="@drawable/main" />
 
     <Button
         android:id="@+id/chooseButton"
@@ -24,9 +23,12 @@
         android:layout_marginStart="130dp"
         android:layout_marginEnd="131dp"
         android:layout_marginBottom="84dp"
-        android:text="@string/upload_photo"
+        android:background="@android:color/transparent"
+        android:text="@string/upload_image"
+        android:textColor="#9F9B9B"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -38,26 +40,12 @@
         android:layout_marginStart="130dp"
         android:layout_marginEnd="132dp"
         android:layout_marginBottom="136dp"
-        android:text="@string/take_a_photo"
+        android:backgroundTint="#AB1C1711"
+        android:text="@string/capture"
+        android:textColor="#9F9B9B"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="304dp"
-        android:layout_height="177dp"
-        android:layout_above="@+id/button"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="53dp"
-        android:layout_marginTop="103dp"
-        android:layout_marginEnd="54dp"
-        android:layout_marginBottom="451dp"
-        android:contentDescription="@string/todo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,7 +3,6 @@
 package com.example.spoton_v3
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -13,7 +12,6 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -32,7 +30,6 @@ import java.time.LocalDateTime
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
     private val cameraRequest = 1888
-    lateinit var imageView: ImageView
     private val db = Firebase.firestore
     private val storage = Firebase.storage
     data class Pred(val aircraft: String = "", val score: Float = 0.0F)
@@ -45,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         //private const val REQUEST_CODE = 13
         private const val TAG = "DocSnippets"
     }
-    @SuppressLint("MissingInflatedId")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -54,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         if (ContextCompat.checkSelfPermission(applicationContext, Manifest.permission.CAMERA)
             == PackageManager.PERMISSION_DENIED)
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), cameraRequest)
-        imageView = findViewById(R.id.imageView)
+//        imageView = findViewById(R.id.imageView)
         val photoButton: Button = findViewById(R.id.button)
 
         photoButton.setOnClickListener {
@@ -85,15 +82,18 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == cameraRequest) {
-            val photo: Bitmap = data?.extras?.get("data") as Bitmap
-            imageView.setImageBitmap(photo)
-            predict(photo)
+            if (data != null) {
+                if (data.extras != null) {
+                    val photo: Bitmap = data.extras?.get("data") as Bitmap
+                    predict(photo)
+                }
+            }
+
         }
         if (requestCode == IMAGE_CHOOSE){
             val uri = data?.data
             if (uri != null) {
                 val photo = uriToBitmap(uri)
-                imageView.setImageBitmap(photo)
                 predict(photo)
             }
         }
@@ -118,13 +118,11 @@ class MainActivity : AppCompatActivity() {
 
         val bundle = Bundle()
 
+        val intent = Intent(this, ReturnActivity::class.java)
+        addToDb(prediction, inputImage)
         bundle.putString("aircraft", prediction.aircraft)
         bundle.putFloat("score", prediction.score)
-        //bundle.putByteArray("img", convertBitmapToByteArray(inputImage))
-        val intent = Intent(this, ReturnActivity::class.java)
         intent.putExtras(bundle)
-
-        addToDb(prediction, inputImage)
 
         // Releases model resources if no longer used.
         model.close()
@@ -159,7 +157,7 @@ class MainActivity : AppCompatActivity() {
                 //val aircraftImagesRef = storageRef.child("{images/${documentReference.id}}")
 
                 val uploadTask = aircraftRef.putBytes(convertBitmapToByteArray(image)!!)
-                uploadTask.addOnFailureListener { it ->
+                uploadTask.addOnFailureListener {
                     Log.w(TAG, "Upload error: ${it.message}")
                     // Handle unsuccessful uploads
                 }.addOnSuccessListener {

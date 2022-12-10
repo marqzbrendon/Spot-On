@@ -17,4 +17,8 @@
     <string name="confidence">Confidence</string>
     <string name="homepage">Homepage</string>
     <string name="display_image">Display Image</string>
+    <string name="background_image">background image</string>
+    <string name="background_image2">background image</string>
+    <string name="upload_image">UPLOAD IMAGE</string>
+    <string name="capture">CAPTURE</string>
 </resources>
